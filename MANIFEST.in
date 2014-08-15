@@ -1,0 +1,9 @@
+include AUTHORS
+include LICENSE
+include DESCRIPTION
+include CHANGELOG.txt
+include README.md
+graft djangocms_text_redactor
+global-exclude *.orig *.pyc *.log *.swp
+prune djangocms_text_redactor/tests/coverage
+prune djangocms_text_redactor/.ropeproject
