@@ -1,7 +1,12 @@
 Django-cms Text Redactor
-============
+========================
 
-A django-cms plugin that displays text and uses the redactor editor for editing.
+A django-cms plugin that displays text and uses the
+[Redactor](http://imperavi.com/redactor) editor for editing.
+
+Note that Redactor requires a license, therefore it is not included in this
+repository.
+
 
 Installation
 ------------
@@ -18,8 +23,6 @@ To get the latest commit from GitHub
 
     pip install -e git+git://github.com/bitmazk/djangocms-text-redactor.git#egg=djangocms_text_redactor
 
-TODO: Describe further installation steps (edit / remove the examples below):
-
 Add ``djangocms_text_redactor`` to your ``INSTALLED_APPS``
 
 .. code-block:: python
@@ -28,22 +31,6 @@ Add ``djangocms_text_redactor`` to your ``INSTALLED_APPS``
         ...,
         'djangocms_text_redactor',
     )
-
-Add the ``djangocms_text_redactor`` URLs to your ``urls.py``
-
-.. code-block:: python
-
-    urlpatterns = patterns('',
-        ...
-        url(r'^app-url/', include('djangocms_text_redactor.urls')),
-    )
-
-Before your tags/filters are available in your templates, load them by using
-
-.. code-block:: html
-
-	{% load djangocms_text_redactor_tags %}
-
 
 Don't forget to migrate your database
 
