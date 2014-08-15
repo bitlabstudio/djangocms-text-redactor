@@ -16,9 +16,9 @@ class RedactorText(CMSPlugin):
             "        'horizontalrule'],\n"
             "    toolbarFixed: true,\n"
             "    toolbarFixedBox: true,\n"
-            "    toolbarExternal: '[data-id=\"redactor-toolbar\"]',\n"
-            "    imageUpload: image_upload_url,\n"
-            "    imageGetJson: image_get_json_url\n"
+            "    toolbarExternal: '',\n"
+            "    imageUpload: '',\n"
+            "    imageGetJson: ''\n"
             "}"
         ),
     )
