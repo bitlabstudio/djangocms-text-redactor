@@ -32,18 +32,37 @@ Add ``djangocms_text_redactor`` to your ``INSTALLED_APPS``
         'djangocms_text_redactor',
     )
 
+Add the app's URLs to your ``urls.py``
+
+.. code-block:: python
+
+    urlpatterns += patterns(
+        '',
+        url(r'^djangocms-text-redactor/', include('djangocms_text_redactor.urls')),
+        ...
+    )
+
 Don't forget to migrate your database
 
 .. code-block:: bash
 
     ./manage.py migrate djangocms_text_redactor
 
+Make sure that you include the redactor CSS and JS files in the CMS template
+that should contain the Redactor plugin.
+
+Make sure to set the settings ``DJANGOCMS_TEXT_REDACTOR_IMAGE_UPLOAD_URL`` and
+``DJANGOCMS_TEXT_REDACTOR_IMAGE_GET_JSON_URL`` to the url names of the two
+views that handle this (see Redactor documentation).
+
 
 Usage
 -----
 
-TODO: Describe usage or point to docs. Also describe available settings and
-templatetags.
+Add the ``Redactor plugin`` to one of your placeholders. It will have some
+sane default settings. You can leave the settings for ``toolbarExternal``,
+``imageUpload`` and ``imageGetJson`` as they are because they will be set
+according to your settings.
 
 
 Contribute
