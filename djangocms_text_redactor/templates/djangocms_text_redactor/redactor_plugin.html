@@ -1,0 +1,28 @@
+{% load i18n sekizai_tags future %}
+{% if request.user.is_staff or request.user.is_superuser %}
+    <form method="post" action="{% url "djangocms_text_redactor_save" %}" role="form">
+        {% csrf_token %}
+        <div class="form-group">
+            <div data-id="redactor-toolbar_{{ instance.pk }}" style="position:relative;z-index:2;"></div>
+            <textarea data-id="redactor_{{ instance.pk }}" name="redactor_content">{{ instance.content|safe }}</textarea>
+            <input type="hidden" name="plugin_instance_pk" value="{{ instance.pk }}" />
+            <input type="hidden" name="next" value="{{ request.path }}" />
+        </div>
+        <input class="btn btn-primary" type="submit" name="btn-submit" value="{% trans "Save changes" %}" />
+    </form>
+{% else %}
+    {{ instance.content|safe }}
+{% endif %}
+
+{% addtoblock "js" %}
+<script>
+    $(document).ready(function() {
+        var redactor_settings = {{ instance.redactor_settings|safe }};
+        redactor_settings['toolbarExternal'] = '[data-id="redactor-toolbar_{{ instance.pk }}"]';
+        redactor_settings['imageUpload'] = '{{ image_upload_url }}';
+        redactor_settings['imageGetJson'] = '{{ image_get_json_url }}';
+        console.log(redactor_settings);
+        $('[data-id="redactor_{{ instance.pk }}"]').redactor(redactor_settings);
+    });
+</script>
+{% endaddtoblock %}

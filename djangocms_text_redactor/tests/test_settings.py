@@ -8,6 +8,10 @@ logging.getLogger("factory").setLevel(logging.WARN)
 
 SITE_ID = 1
 
+LANGUAGES = [
+    ('en', 'English'),
+]
+
 APP_ROOT = os.path.abspath(
     os.path.join(os.path.dirname(__file__), '..'))
 
@@ -50,6 +54,10 @@ EXTERNAL_APPS = [
     'django.contrib.sitemaps',
     'django.contrib.sites',
     'django_nose',
+    'cms',
+    'mptt',
+    'menus',
+    'sekizai',
 ]
 
 INTERNAL_APPS = [
@@ -59,5 +67,34 @@ INTERNAL_APPS = [
 
 INSTALLED_APPS = EXTERNAL_APPS + INTERNAL_APPS
 COVERAGE_MODULE_EXCLUDES += EXTERNAL_APPS
+
+CMS_TEMPLATES = (
+    ('default.html', 'Default template'),
+)
+CMS_MODERATOR = False
+CMS_PERMISSION = True
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'cms.context_processors.media',
+    'sekizai.context_processors.sekizai',
+)
+MIDDLEWARE_CLASSES = [
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'cms.middleware.multilingual.MultilingualURLMiddleware',
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.toolbar.ToolbarMiddleware',
+]
 
 SECRET_KEY = 'foobar'
